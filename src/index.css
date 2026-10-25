@@ -93,11 +93,15 @@ body {
   }
 
   .client-review {
-    @apply rounded-lg md:p-10 p-5 col-span-1 bg-black-300 bg-opacity-50;
+    @apply flex flex-col rounded-lg md:p-10 p-5 col-span-1 bg-black-300 bg-opacity-50;
+  }
+
+  .client-empty {
+    @apply flex items-center justify-center w-full min-h-[300px] mt-12 rounded-lg border border-dashed border-black-500 bg-black-300 bg-opacity-50;
   }
 
   .client-content {
-    @apply flex lg:flex-row flex-col justify-between lg:items-center items-start gap-5 mt-7;
+    @apply flex lg:flex-row flex-col justify-between lg:items-center items-start gap-5 mt-auto pt-7;
   }
 
   /*  work experience section */
@@ -195,5 +199,19 @@ body {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+.canvas-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #f1f1f1;
+  border-radius: 50%;
+  animation: canvas-loader-spin 0.8s linear infinite;
+}
+
+@keyframes canvas-loader-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

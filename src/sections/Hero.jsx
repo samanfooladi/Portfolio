@@ -70,7 +70,7 @@ const Hero = () => {
       <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen">
         {/*<Leva />*/}
         <Canvas className="w-full h-full">
-          <Suspense fallback={<CanvasLoader />}>
+          <Suspense fallback={null}>
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
             <HeroCamera>
               <HackerRoom
@@ -89,8 +89,9 @@ const Hero = () => {
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
           </Suspense>
         </Canvas>
+        <CanvasLoader />
         <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
-          <a href="#contact" className="w-fit">
+          <a href="#about" className="w-fit">
             <Button
               name="Let's work togather"
               isBeam

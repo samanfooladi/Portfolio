@@ -1,19 +1,14 @@
-import { Html, useProgress } from "@react-three/drei";
+import { useProgress } from "@react-three/drei";
 
+// Plain DOM overlay rendered next to a <Canvas>, not inside it.
+// The parent element must be positioned (e.g. `relative` or `absolute`).
 const CanvasLoader = () => {
-  const { progress } = useProgress();
+  const { active, progress } = useProgress();
+
+  if (!active) return null;
 
   return (
-    <Html
-      as="div"
-      center
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
+    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
       <span className="canvas-loader" />
       <p
         style={{
@@ -25,7 +20,7 @@ const CanvasLoader = () => {
       >
         {progress !== 0 ? `${progress.toFixed(2)}%` : "Loading..."}
       </p>
-    </Html>
+    </div>
   );
 };
 export default CanvasLoader;
