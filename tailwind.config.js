@@ -5,8 +5,13 @@ export default {
     extend: {
       fontFamily: {
         generalsans: ['General Sans', 'sans-serif'],
+        pixel: ['Silkscreen', 'monospace'],
       },
       colors: {
+        accent: {
+          DEFAULT: '#2B4BFF',
+          glow: 'rgba(43,75,255,0.35)',
+        },
         black: {
           DEFAULT: '#000',
           100: '#010103',
