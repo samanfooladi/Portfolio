@@ -33,7 +33,14 @@ const PixelSprite = ({ grid, colors, className, style }) => (
     {grid.flatMap((row, y) =>
       [...row].map((cell, x) =>
         colors[cell] ? (
-          <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill={colors[cell]} />
+          <rect
+            key={`${x}-${y}`}
+            x={x}
+            y={y}
+            width="1"
+            height="1"
+            fill={colors[cell]}
+          />
         ) : null,
       ),
     )}
@@ -68,17 +75,23 @@ const SpinningReactLogo = ({ position, scale }) => {
 // Places 3D items using the same % coordinates as the DOM items
 const HeroScene = ({ isMobile, isTablet }) => {
   const { viewport, size } = useThree();
-  const toWorld = (x, y) => [(x - 0.5) * viewport.width, (0.5 - y) * viewport.height, 0];
+  const toWorld = (x, y) => [
+    (x - 0.5) * viewport.width,
+    (0.5 - y) * viewport.height,
+    0,
+  ];
   const pxToWorld = viewport.width / size.width;
   const itemScale = isMobile ? 0.6 : isTablet ? 0.8 : 1;
 
   return (
     <group>
       <SpinningReactLogo
-        position={isMobile ? toWorld(0.82, 0.77) : toWorld(0.79, 0.58)}
+        position={isMobile ? toWorld(0.82, 0.77) : toWorld(0.83, 0.7)}
         scale={0.4 * itemScale}
       />
-      {!isMobile && <Keycap position={toWorld(0.13, 0.41)} scale={pxToWorld * itemScale} />}
+      {!isMobile && (
+        <Keycap position={toWorld(0.13, 0.41)} scale={pxToWorld * itemScale} />
+      )}
     </group>
   );
 };
@@ -122,13 +135,19 @@ const Hero = () => {
       </div>
       {/* Break out of main's max-w-7xl so the canvas spans the full viewport width */}
       <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden">
-        <div aria-hidden="true" className="hero-dot-grid absolute inset-0 pointer-events-none" />
+        <div
+          aria-hidden="true"
+          className="hero-dot-grid absolute inset-0 pointer-events-none"
+        />
         <div
           aria-hidden="true"
           className="hero-glow absolute left-1/2 top-[62%] -translate-x-1/2 -translate-y-1/2 w-[68%] min-w-[600px] aspect-[980/520] pointer-events-none"
         />
 
-        <Canvas className="w-full h-full pointer-events-none" aria-hidden="true">
+        <Canvas
+          className="w-full h-full pointer-events-none"
+          aria-hidden="true"
+        >
           <Suspense fallback={null}>
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
             <HeroScene isMobile={isMobile} isTablet={isTablet} />
@@ -138,7 +157,7 @@ const Hero = () => {
         </Canvas>
         <CanvasLoader />
 
-        <div className="absolute left-1/2 md:top-[44%] top-[48%] -translate-x-1/2 w-[54%] max-md:w-[90vw] max-w-[90vw] pointer-events-none">
+        <div className="absolute left-1/2 md:top-[34%] top-[48%] -translate-x-1/2 w-[54%] max-md:w-[90vw] max-w-[90vw] pointer-events-none">
           <div
             aria-hidden="true"
             className="hero-shadow absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-[72%] aspect-[560/26]"
@@ -151,7 +170,7 @@ const Hero = () => {
           />
         </div>
 
-        <Floating x={isMobile ? "80%" : "72%"} y={isMobile ? "38%" : "33%"}>
+        <Floating x={isMobile ? "80%" : "78%"} y={isMobile ? "38%" : "29%"}>
           <img
             src="/images/sam-head-pixel.png"
             alt=""
