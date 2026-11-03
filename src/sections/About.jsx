@@ -69,7 +69,7 @@ const About = () => {
               <p className="grid-subtext">
                 I'm based in Iran with remote work available.
               </p>
-              <Button name="Contact Me" isBeam containerClass="w-full mt-10" />
+              <Button name="Contact Me" isBeam containerClass="w-full mt-20" />
             </div>
           </div>
         </div>
@@ -98,12 +98,12 @@ const About = () => {
             />
             <div className="Contact me">
               <p className="grid-subtext text-center">Contact me</p>
-              <div className="copy-container" onClick={handleCopy}>
+              <div className="copy-container mt-10" onClick={handleCopy}>
                 <img
                   src={hasCopied ? "assets/tick.svg" : "assets/copy.svg"}
                   alt="copy"
                 />
-                <p className="lg:text-2xl md:text-xl font-medium text-gray_gradient text-white">
+                <p className="lg:text-xl md:text-l font-medium text-gray_gradient text-white">
                   samanfooladi2025@gmail.com
                 </p>
               </div>

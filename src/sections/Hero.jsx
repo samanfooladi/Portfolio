@@ -3,60 +3,11 @@ import { PerspectiveCamera } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import CanvasLoader from "../Components/CanvasLoader.jsx";
 import { useMediaQuery } from "react-responsive";
 import ReactLogo from "../Components/ReactLogo.jsx";
 import Keycap from "../Components/Keycap.jsx";
 import Button from "../Components/Button.jsx";
-
-// 9x8 pixel heart, "#" = red, "o" = highlight
-const HEART = [
-  ".##...##.",
-  "##o#.####",
-  "#########",
-  "#########",
-  ".#######.",
-  "..#####..",
-  "...###...",
-  "....#....",
-];
-
-const PLUS = ["..#..", "..#..", "#####", "..#..", "..#.."];
-
-const PixelSprite = ({ grid, colors, className, style }) => (
-  <svg
-    viewBox={`0 0 ${grid[0].length} ${grid.length}`}
-    shapeRendering="crispEdges"
-    className={className}
-    style={style}
-  >
-    {grid.flatMap((row, y) =>
-      [...row].map((cell, x) =>
-        colors[cell] ? (
-          <rect
-            key={`${x}-${y}`}
-            x={x}
-            y={y}
-            width="1"
-            height="1"
-            fill={colors[cell]}
-          />
-        ) : null,
-      ),
-    )}
-  </svg>
-);
-
-// Centers its child on a point given as % of the hero
-const Floating = ({ x, y, className = "", children }) => (
-  <div
-    aria-hidden="true"
-    className={`absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none ${className}`}
-    style={{ left: x, top: y }}
-  >
-    {children}
-  </div>
-);
+import Floating from "../Components/Floating.jsx";
 
 const SpinningReactLogo = ({ position, scale }) => {
   const ref = useRef();
@@ -155,7 +106,7 @@ const Hero = () => {
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
           </Suspense>
         </Canvas>
-        <CanvasLoader />
+
 
         <div className="absolute left-1/2 md:top-[34%] top-[48%] -translate-x-1/2 w-[54%] max-md:w-[90vw] max-w-[90vw] pointer-events-none">
           <div
@@ -170,52 +121,7 @@ const Hero = () => {
           />
         </div>
 
-        <Floating x={isMobile ? "80%" : "78%"} y={isMobile ? "38%" : "29%"}>
-          <img
-            src="/images/sam-head-pixel.png"
-            alt=""
-            className="pixel-tilt w-[80px] md:w-[106px] lg:w-[132px] h-auto [image-rendering:pixelated]"
-          />
-        </Floating>
-        <Floating x={isMobile ? "16%" : "23%"} y={isMobile ? "62%" : "67%"}>
-          <PixelSprite
-            grid={HEART}
-            colors={{ "#": "#FF3B5C", o: "#FFFFFF" }}
-            className="pixel-bob w-[36px] md:w-[43px] lg:w-[54px] h-auto"
-            style={{ animationDelay: "0.3s" }}
-          />
-        </Floating>
-        <Floating x={isMobile ? "12%" : "17%"} y={isMobile ? "40%" : "28%"}>
-          <PixelSprite
-            grid={PLUS}
-            colors={{ "#": "#FFD84D" }}
-            className="pixel-bob w-[20px] md:w-[24px] lg:w-[30px] h-auto"
-          />
-        </Floating>
-        <Floating x="87%" y="29%" className="max-md:hidden">
-          <PixelSprite
-            grid={PLUS}
-            colors={{ "#": "#6B83FF" }}
-            className="pixel-bob w-[19px] lg:w-[24px] h-auto"
-            style={{ animationDelay: "0.6s" }}
-          />
-        </Floating>
-        <Floating x="90%" y="80%" className="max-md:hidden">
-          <PixelSprite
-            grid={PLUS}
-            colors={{ "#": "#FFFFFF" }}
-            className="pixel-bob w-[16px] lg:w-[20px] h-auto"
-            style={{ animationDelay: "1.1s" }}
-          />
-        </Floating>
-        <Floating x="85%" y="47%" className="max-md:hidden">
-          <span
-            className="pixel-bob block font-pixel text-white-700 bg-black-200 border-2 border-accent px-2 py-1 md:text-sm lg:text-base"
-            style={{ animationDelay: "0.9s" }}
-          >
-            &lt;/&gt;
-          </span>
-        </Floating>
+        <Floating isMobile={isMobile} />
 
         <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
           <a href="#contact" className="w-fit">

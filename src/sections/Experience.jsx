@@ -8,7 +8,7 @@ const Experience = () => {
         <h3 className="head-text">My work Experience</h3>
         <div className="work-container">
           <div className="work-canvas">
-            <Canvas></Canvas>
+            <p>Working on Avatar</p>
           </div>
           <div className="work-content">
             <div className="sm:py-10 py-5 sm:px-5 px-2.5">
